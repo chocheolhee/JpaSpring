@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import study.board.form.FindNameForm;
 import study.board.form.LoginForm;
 import study.board.entity.Member;
+import study.board.form.PasswordForm;
 import study.board.service.MemberService;
 import study.board.web.SessionConst;
 
@@ -78,6 +79,22 @@ public class LoginController {
             return "findId";
         }
         log.info("member= {}", findNameMember);
+        return "redirect:/";
+    }
+
+    @GetMapping("/findPassword")
+    public String passwordPage(@ModelAttribute PasswordForm form) {
+        return "findPassword";
+    }
+
+    @PostMapping("/findPassword")
+    public String findPassword(@ModelAttribute("passwordForm") PasswordForm form) {
+        Member findPassword = memberService.findPassword(form);
+
+        if (findPassword == null) {
+            return "findPassword";
+        }
+        log.info("member= {}", findPassword.getUserName());
         return "redirect:/";
     }
 }

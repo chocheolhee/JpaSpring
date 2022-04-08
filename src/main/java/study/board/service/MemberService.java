@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import study.board.entity.Member;
 import study.board.form.FindNameForm;
+import study.board.form.PasswordForm;
 import study.board.repository.MemberRepository;
 import java.util.List;
 import java.util.Optional;
@@ -64,7 +65,23 @@ public class MemberService {
      * 아이디 찾기
      */
     public Member findLoginName(FindNameForm member) {
+
         Member findMember = memberRepository.findUserName(member.getUserName());
+
+        if (findMember != null) {
+            return findMember;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 비밀번호 찾기 H2 DB 통해서 판별
+     */
+    public Member findPassword(PasswordForm member) {
+
+        Member findMember = memberRepository.findPassword(member.getPassword());
+
         if (findMember != null) {
             return findMember;
         } else {
