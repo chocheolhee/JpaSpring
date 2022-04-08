@@ -1,11 +1,14 @@
 package study.board.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import study.board.form.FindNameForm;
 import study.board.form.LoginForm;
 import study.board.entity.Member;
 import study.board.service.MemberService;
@@ -19,6 +22,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class LoginController {
 
     private final MemberService memberService;
@@ -59,6 +63,21 @@ public class LoginController {
         if (session != null) {
             session.invalidate();
         }
+        return "redirect:/";
+    }
+
+    @GetMapping("/findId")
+    public String findLoginId(@ModelAttribute FindNameForm form) {
+        return "findId";
+    }
+
+    @PostMapping("/findId")
+    public String findCheckLoginId(@ModelAttribute("findNameForm") FindNameForm form) {
+        Member findNameMember = memberService.findLoginName(form);
+        if (findNameMember == null) {
+            return "findId";
+        }
+        log.info("member= {}", findNameMember);
         return "redirect:/";
     }
 }
