@@ -20,5 +20,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 비밀번호 찾기
     @Query("select m from Member m where m.password= :password")
     Member findPassword(@Param("password") String password);
-
 }

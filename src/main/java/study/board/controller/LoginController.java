@@ -35,26 +35,24 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute LoginForm form, BindingResult result, HttpServletRequest request) {
+
         if (result.hasErrors()) {
             return "login/loginForm";
         }
 
-        Member loginMember = memberService.login(form.getUserId(), form.getPassword());
+        Member loginMember = memberService.login(form);
 
         if (loginMember == null) {
-            // 글로벌 오류 TODO
-//
-//            ---------------------
             return "login/loginForm";
+        } else {
+            // 로그인 성공 처리
+            //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
+            HttpSession session = request.getSession(true);
+            //세션에 로그인 회원 정보 보관
+            session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+            return "redirect:/";
         }
-
-        // 로그인 성공 처리
-        //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
-        HttpSession session = request.getSession(true);
-        //세션에 로그인 회원 정보 보관
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-
-        return "redirect:/";
     }
 
     @PostMapping("/logout")

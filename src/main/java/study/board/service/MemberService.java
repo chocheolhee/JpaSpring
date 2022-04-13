@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import study.board.entity.Member;
 import study.board.form.FindNameForm;
+import study.board.form.LoginForm;
 import study.board.form.PasswordForm;
 import study.board.repository.MemberRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -45,20 +47,14 @@ public class MemberService {
     /**
      * 로그인
      */
-    public Member login(String userId, String password) {
+    public Member login(LoginForm form) {
+        Member findMember = memberRepository.findByUserId(form.getUserId());
 
-        Member findMember = memberRepository.findByUserId(userId);
-
-        if (findMember.getPassword().equals(password)) {
+        if (findMember.getPassword().equals(form.getPassword())) {
             return findMember;
         } else {
             return null;
         }
-
-        //람다 적용
-//       return memberRepository.findByUserId(userId)
-//                .filter(member -> member.getPassword().equals(password))
-//                .orElse(null);
     }
 
     /**
