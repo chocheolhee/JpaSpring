@@ -30,6 +30,8 @@ dependencies {
 //    MYSQL 연동
     implementation 'mysql:mysql-connector-java'
 
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
