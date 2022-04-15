@@ -1,12 +1,15 @@
 package study.board.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Board {
 
     @Id
@@ -17,10 +20,11 @@ public class Board {
     private String title;
     private String content;
 
+
     /**
      * Member 엔티티 연관관계 맵핑
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

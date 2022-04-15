@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import study.board.entity.Board;
 import study.board.form.MemberForm;
 import study.board.entity.Member;
 import study.board.service.MemberService;

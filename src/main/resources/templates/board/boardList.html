@@ -20,15 +20,17 @@
                 <tr>
                     <th>번호</th>
                     <th>글제목</th>
-                    <th>작성자</th>
+                    <th>글내용</th>
                 </tr>
                 </thead>
                 <tbody>
-<!--                <tr th:each="member : ${members}">-->
-<!--                    <td th:text="${member.id}"></td>-->
-<!--                    <td th:text="${member.userId}"></td>-->
-<!--                    <td th:text="${member.userName}"></td>-->
-<!--                </tr>-->
+                <tr th:each="board : ${boards}">
+                    <td th:text="${board.id}"></td>
+                    <td>
+                        <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+                    </td>
+                    <td th:text="${board.content}"></td>
+                </tr>
                 </tbody>
             </table>
         </div>
