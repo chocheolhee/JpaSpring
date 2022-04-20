@@ -7,15 +7,12 @@
 
     <h4 style="padding: 10px" class="mb-3" th:text="|로그인 유저 확인: ${member.userId}|">로그인 사용자 이름</h4>
     <form th:action="@{/logout}" method="post">
-        <button class="btn btn-dark btn-lg"
+        <button class="btn btn-primary btn-lg"
                 onclick="location.href='../home.html'" type="submit">
             로그아웃
         </button>
     </form>
     <hr class="my-4">
-    <div>
-        asd
-    </div>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
 </body>

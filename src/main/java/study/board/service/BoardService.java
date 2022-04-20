@@ -3,10 +3,11 @@ package study.board.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import study.board.entity.Board;
+import study.board.entity.Member;
 import study.board.repository.BoardRepository;
+import study.board.repository.MemberRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

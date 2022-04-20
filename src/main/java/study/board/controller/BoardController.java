@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import study.board.entity.Board;
+import study.board.entity.Member;
 import study.board.form.BoardForm;
+import study.board.repository.MemberRepository;
 import study.board.service.BoardService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -28,11 +31,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/add")
-    public String addArticle(BoardForm form) {
+    public String addArticle(Board form) {
 
         Board board = new Board();
         board.setTitle(form.getTitle());
         board.setContent(form.getContent());
+        // 연관관계 Member 설정 로직 추가하기
+        //---------------------------------
 
         boardService.save(board);
 

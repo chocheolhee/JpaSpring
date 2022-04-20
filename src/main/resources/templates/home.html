@@ -8,13 +8,20 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
     <div class="jumbotron">
-        <h1>HELLO World</h1>
-        <p class="lead">회원 기능</p>
+        <h1>로그인, 회원가입</h1>
         <p>
             <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
             <a class="btn btn-lg btn-primary" href="/login">로그인</a>
             <a class="btn btn-lg btn-info" href="/members">회원 목록</a>
         </p>
+    </div>
+    <div class="jumbotron">
+        <h1>게시판</h1>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/board/add">게시글 저장</a>
+            <a class="btn btn-lg btn-primary" href="/board">게시판 페이지</a>
+        </p>
+    </div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
 </div> <!-- /container -->
