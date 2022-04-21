@@ -43,11 +43,20 @@ public class BoardService {
      * 게시글 수정
      */
     @Transactional
-    public void update(Long id, Board form) {
+    public void update(Long id, String title, String content, String writer) {
         Board findArticle = boardRepository.findById(id).get();
 
-        findArticle.setTitle(form.getTitle());
-        findArticle.setContent(form.getContent());
-        findArticle.setWriter(form.getWriter());
+        findArticle.setTitle(title);
+        findArticle.setContent(content);
+        findArticle.setWriter(writer);
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @Transactional
+    public void delete(Long id) {
+        Board board = boardRepository.findById(id).get();
+        boardRepository.delete(board);
     }
 }

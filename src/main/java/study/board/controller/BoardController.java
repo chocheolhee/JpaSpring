@@ -11,6 +11,7 @@ import study.board.entity.Board;
 
 import study.board.form.BoardForm;
 import study.board.service.BoardService;
+
 import java.util.List;
 
 @Controller
@@ -42,7 +43,7 @@ public class BoardController {
 
     /**
      * 게시글 상세 페이지
-     * http://localhost:8080/board/view?id=글 id값
+     * http://localhost:8080/board/view/{id}
      */
     @GetMapping("/board/view/{id}")
     public String boardView(@PathVariable("id") Long id, Model model) {
@@ -85,14 +86,19 @@ public class BoardController {
      * 게시글 수정
      */
     @PostMapping("/board/{id}/edit")
-    public String edit(@PathVariable("id") Long id,@ModelAttribute("form") BoardForm form) {
+    public String edit(@PathVariable("id") Long id, @ModelAttribute("form") BoardForm form) {
 
-        Board board = new Board();
-        board.setTitle(form.getTitle());
-        board.setContent(form.getContent());
-        board.setWriter(form.getWriter());
+        boardService.update(id, form.getTitle(), form.getContent(), form.getWriter());
+        return "redirect:/board";
+    }
 
-        boardService.update(id, board);
+    /**
+     * 게시글 삭제
+     */
+    @GetMapping("/board/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        boardService.delete(id);
+
         return "redirect:/board";
     }
 }
