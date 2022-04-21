@@ -20,6 +20,7 @@
                 <tr>
                     <th>번호</th>
                     <th>글제목</th>
+                    <th>작성자</th>
 
                 </tr>
                 </thead>
@@ -29,7 +30,7 @@
                     <td>
                         <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
                     </td>
-
+                    <td th:text="${board.writer}"></td>
                 </tr>
                 </tbody>
             </table>

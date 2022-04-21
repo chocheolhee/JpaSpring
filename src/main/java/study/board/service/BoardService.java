@@ -33,7 +33,6 @@ public class BoardService {
      * 게시글 하나 조회
      */
     public Board getBoard(Long boardId) {
-
         return boardRepository.findById(boardId).get();
     }
 }
