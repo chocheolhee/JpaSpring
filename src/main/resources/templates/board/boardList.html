@@ -34,13 +34,30 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <nav>
+        <ul th:class="pagination">
+            <li>
+                <a th:href="@{/board(page=0)}" aria-label="First">
+                    <span aria-hidden="true">First</span>
+                </a>
+            </li>
 
             <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
                 <a th:if="${page != nowPage}" th:href="@{/board(page = ${page - 1})}" th:text="${page}"></a>
                 <strong th:if="${page == nowPage}" th:text="${page}" style="color: #ba8b00"></strong>
             </th:block>
-        </div>
-    </div>
+            <!--맨 마지막 페이지로 이동 -->
+            <li>
+                <a th:href="@{/board(page=10)}" aria-label="Last">
+                    <span aria-hidden="true">Last</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
 </div> <!-- /container -->
 </body>
 </html>

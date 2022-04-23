@@ -73,10 +73,13 @@ public class BoardController {
         int startPage = Math.max(nowPage - 4, 1);
         int endPage = Math.min(nowPage + 5, boards.getTotalPages());
 
+
         model.addAttribute("boards", boards);
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+
+
 
         return "board/boardList";
     }
