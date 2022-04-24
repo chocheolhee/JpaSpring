@@ -31,6 +31,7 @@ public class BoardService {
      * 게시글 조회
      * 페이징
      */
+    @Transactional
     public Page<Board> findAll(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
