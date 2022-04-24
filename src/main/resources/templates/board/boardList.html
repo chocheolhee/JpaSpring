@@ -79,7 +79,7 @@
                 pageNumber = ${boards.pageable.pageNumber},
                 pageSize = ${boards.pageable.pageSize},
                 totalPages = ${boards.totalPages - 1},
-                startPage = ${T(java.lang.Math).floor(pageNumber / pageSize) * pageSize + 1},
+                startPage = ${T(java.lang.Math).ceil(pageNumber / pageSize) * pageSize + 1},
                 tempEndPage = ${startPage + pageSize - 1},
                 endPage = (${tempEndPage > totalPages ? totalPages : tempEndPage})"
                 aria-label="Page navigation">
@@ -115,7 +115,8 @@
                     </a>
                 </li>
 
-                <li th:class append=" ${T(Math).floor(totalPages/10)*10 <= startPage} ? 'disabled'" class="page-item">
+                <li th:class append=" ${T(java.lang.Math).floor(totalPages/10)*10 <= startPage} ? 'disabled'"
+                    class="page-item">
                     <a class="page-link" th:href="@{/board(page=${totalPages})}">
                         <span>&raquo;</span>
                         <span class="sr-only">First</span>
