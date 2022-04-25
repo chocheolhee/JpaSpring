@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Board {
+public class Board extends JpaBaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

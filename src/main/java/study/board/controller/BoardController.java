@@ -16,8 +16,6 @@ import study.board.entity.Board;
 import study.board.form.BoardForm;
 import study.board.service.BoardService;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class BoardController {
@@ -65,28 +63,6 @@ public class BoardController {
     @GetMapping("/board")
     public String boardList(Model model,
                             @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-
-        // 페이징 V1, controller 에서 변수들 적용 후 model.addAttribute 로 넘겨줌
-
-//        int prePageNumber = pageable.previousOrFirst().getPageNumber();
-//        int nextPageNumber = pageable.next().getPageNumber();
-//
-//        // 페이징 로직
-//        Page<Board> boards = boardService.findAll(pageable);
-//
-//        int nowPage = boards.getPageable().getPageNumber() + 1;
-//        int startPage = Math.max(nowPage - 4, 1);
-//        int endPage = Math.min(nowPage + 5, boards.getTotalPages());
-//        int totalPages = boards.getTotalPages() - 1;
-//
-//        model.addAttribute("boards", boards);
-//        model.addAttribute("nowPage", nowPage);
-//        model.addAttribute("startPage", startPage);
-//        model.addAttribute("endPage", endPage);
-//        model.addAttribute("totalPages", totalPages);
-//        model.addAttribute("prePageNumber", prePageNumber);
-//        model.addAttribute("nextPageNumber", nextPageNumber);
-
 
         // 페이징 V2 타임리프 템플릿에서 변수 적용
         Page<Board> boards = boardService.findAll(pageable);
