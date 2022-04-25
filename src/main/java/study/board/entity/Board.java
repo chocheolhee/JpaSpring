@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Board extends JpaBaseEntity{
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,7 @@ public class Board extends JpaBaseEntity{
     private String writer;
 
 
-
-//    /**
+    //    /**
 //     * Member 엔티티 연관관계 맵핑
 //     */
 //    @ManyToOne(fetch = FetchType.LAZY)
