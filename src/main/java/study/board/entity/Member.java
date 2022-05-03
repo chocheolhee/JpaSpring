@@ -1,17 +1,12 @@
 package study.board.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id
@@ -24,6 +19,10 @@ public class Member {
     private String password;
     private String userName;
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Board> boards = new ArrayList<>();
+    @Builder
+    public Member( String userId, String password, String userName) {
+        this.userId = userId;
+        this.password = password;
+        this.userName = userName;
+    }
 }

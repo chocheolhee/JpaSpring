@@ -93,7 +93,6 @@ public class BoardController {
      */
     @PostMapping("/board/{id}/edit")
     public String edit(@PathVariable("id") Long id, @ModelAttribute("form") BoardForm form) {
-
         boardService.update(id, form.getTitle(), form.getContent(), form.getWriter());
         return "redirect:/board";
     }

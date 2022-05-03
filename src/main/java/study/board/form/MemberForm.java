@@ -1,12 +1,12 @@
 package study.board.form;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import study.board.entity.Member;
 
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class MemberForm {
 
     @NotEmpty(message = "아이디를 입력해 주세요.")
@@ -17,4 +17,18 @@ public class MemberForm {
 
     private String userName;
 
+    @Builder
+    public MemberForm(String userId, String password, String userName) {
+        this.userId = userId;
+        this.password = password;
+        this.userName = userName;
+    }
+
+    public Member toEntity() {
+        return Member.builder()
+                .userId(userId)
+                .password(password)
+                .userName(userName)
+                .build();
+    }
 }

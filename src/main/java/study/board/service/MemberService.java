@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import study.board.entity.Member;
 import study.board.form.FindNameForm;
 import study.board.form.LoginForm;
+import study.board.form.MemberForm;
 import study.board.form.PasswordForm;
 import study.board.repository.MemberRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,16 +21,18 @@ public class MemberService {
     /**
      * 회원 가입
      */
-    public Long join(Member member) {
+    public Long join(MemberForm form) {
 
         // 중복 회원 검증
-        validateDuplicateMember(member);
+        validateDuplicateMember(form);
+
+        Member member = form.toEntity();
 
         memberRepository.save(member);
         return member.getId();
     }
 
-    private void validateDuplicateMember(Member member) {
+    private void validateDuplicateMember(MemberForm member) {
         Member findMember = memberRepository.findByUserId(member.getUserId());
         if (findMember != null) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
@@ -72,7 +74,7 @@ public class MemberService {
     }
 
     /**
-     * 비밀번호 찾기 H2 DB 통해서 판별
+     * 비밀번호 찾기
      */
     public Member findPassword(PasswordForm member) {
 

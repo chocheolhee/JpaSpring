@@ -34,12 +34,7 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        Member member = new Member();
-        member.setUserId(form.getUserId());
-        member.setPassword(form.getPassword());
-        member.setUserName(form.getUserName());
-
-        memberService.join(member);
+        memberService.join(form);
 
         return "redirect:/";
     }
