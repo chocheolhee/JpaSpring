@@ -1,33 +1,26 @@
 package study.board.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import study.board.filter.LogFilter;
-import study.board.filter.LoginCheckFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import study.board.interceptor.LogInterceptor;
+import study.board.interceptor.LoginCheckInterceptor;
 
-import javax.servlet.Filter;
 
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
-    @Bean
-    public FilterRegistrationBean logFilter() {
-        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(new LogFilter());
-        filterRegistrationBean.setOrder(1);
-        filterRegistrationBean.addUrlPatterns("/*"); // 모든 URL 적용
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 
-        return filterRegistrationBean;
-    }
+        registry.addInterceptor(new LogInterceptor())
+                .order(1)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/css/**", "/*.ico", "/error");
 
-    @Bean
-    public FilterRegistrationBean loginCheckFilter() {
-        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(new LoginCheckFilter());
-        filterRegistrationBean.setOrder(2);
-        filterRegistrationBean.addUrlPatterns("/*"); // 모든 URL 적용
-
-        return filterRegistrationBean;
+        registry.addInterceptor(new LoginCheckInterceptor())
+                .order(2)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/members/new", "/login", "/logout", "/css/*", "/members", "/board");
     }
 }
