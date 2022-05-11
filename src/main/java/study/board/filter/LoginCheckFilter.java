@@ -2,7 +2,7 @@ package study.board.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.PatternMatchUtils;
-import study.board.web.SessionConst;
+import study.board.session.SessionConst;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

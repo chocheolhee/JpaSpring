@@ -26,7 +26,7 @@ public class MemberService {
         // 중복 회원 검증
         validateDuplicateMember(form);
 
-        Member member = form.toEntity();
+        Member member = form.toEntity(); // Dto -> Entity
 
         memberRepository.save(member);
         return member.getId();
@@ -64,13 +64,7 @@ public class MemberService {
      */
     public Member findLoginName(FindNameForm member) {
 
-        Member findMember = memberRepository.findUserName(member.getUserName());
-
-        if (findMember != null) {
-            return findMember;
-        } else {
-            return null;
-        }
+        return memberRepository.findUserName(member.getUserName());
     }
 
     /**
@@ -78,12 +72,6 @@ public class MemberService {
      */
     public Member findPassword(PasswordForm member) {
 
-        Member findMember = memberRepository.findPassword(member.getPassword());
-
-        if (findMember != null) {
-            return findMember;
-        } else {
-            return null;
-        }
+        return memberRepository.findPassword(member.getPassword());
     }
 }

@@ -6,7 +6,7 @@ import study.board.entity.Member;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberForm {
 
     @NotEmpty(message = "아이디를 입력해 주세요.")

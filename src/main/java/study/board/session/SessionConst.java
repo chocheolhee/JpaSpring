@@ -1,4 +1,4 @@
-package study.board.web;
+package study.board.session;
 
 public class SessionConst {
     public static final String LOGIN_MEMBER = "loginMember";

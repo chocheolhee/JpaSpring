@@ -13,7 +13,7 @@ import study.board.form.LoginForm;
 import study.board.entity.Member;
 import study.board.form.PasswordForm;
 import study.board.service.MemberService;
-import study.board.web.SessionConst;
+import study.board.session.SessionConst;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
