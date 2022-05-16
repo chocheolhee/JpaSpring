@@ -5,6 +5,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import study.board.interceptor.LogInterceptor;
 import study.board.interceptor.LoginCheckInterceptor;
+import study.board.interceptor.PostAuthInterceptor;
 
 
 @Configuration
@@ -22,5 +23,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/members/new", "/login", "/logout", "/css/*", "/members", "/board");
+
     }
 }

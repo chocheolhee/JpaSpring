@@ -18,7 +18,7 @@
     <h1 th:text="${board.title}">제목입니다</h1>
     <p th:text="${board.content}">내용이 들어갈 부분입니다</p>
     <a class="btn btn-lg btn-primary" th:href="@{/board/{id}/edit(id=${board.id})}">수정</a>
-    <a class="btn btn-lg btn-primary" th:href="@{/board/{id}(id=${board.id})}">삭제</a>
+    <a class="btn btn-lg btn-primary" th:href="@{/board/{id}/delete(id=${board.id})}">삭제</a>
 
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->

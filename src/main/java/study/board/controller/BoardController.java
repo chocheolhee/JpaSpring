@@ -100,7 +100,7 @@ public class BoardController {
     /**
      * 게시글 삭제
      */
-    @GetMapping("/board/{id}")
+    @GetMapping("/board/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
         boardService.delete(id);
 
