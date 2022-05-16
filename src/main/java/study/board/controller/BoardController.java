@@ -16,6 +16,8 @@ import study.board.entity.Board;
 import study.board.form.BoardForm;
 import study.board.service.BoardService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class BoardController {
@@ -31,14 +33,9 @@ public class BoardController {
     }
 
     @PostMapping("/board/add")
-    public String addArticle(Board form) {
+    public String addArticle(Board form, HttpSession request) {
 
-        Board board = new Board();
-        board.setTitle(form.getTitle());
-        board.setContent(form.getContent());
-        board.setWriter(form.getWriter());
-
-        boardService.save(board);
+        boardService.save(form, request);
 
         return "redirect:/board";
     }

@@ -1,5 +1,6 @@
 package study.board.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,5 +25,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/members/new", "/login", "/logout", "/css/*", "/members", "/board");
 
+        registry.addInterceptor(postAuthInterceptor())
+                .order(3)
+                .addPathPatterns("/board/**/edit", "/board/**/delete");
     }
+
+    @Bean
+    public PostAuthInterceptor postAuthInterceptor() {
+        return new PostAuthInterceptor();
+    }
+
 }

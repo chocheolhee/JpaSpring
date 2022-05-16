@@ -9,7 +9,9 @@ import study.board.entity.Board;
 import study.board.entity.Member;
 import study.board.repository.BoardRepository;
 import study.board.repository.MemberRepository;
+import study.board.session.SessionConst;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -18,12 +20,25 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 게시글 등록
      */
     @Transactional
-    public void save(Board board) {
+    public void save(Board form , HttpSession request) {
+
+        Member findMember = (Member) request.getAttribute(SessionConst.LOGIN_MEMBER);
+        Long id = findMember.getId();
+
+        Member member = memberRepository.findById(id).get();
+
+        Board board = new Board();
+        board.setTitle(form.getTitle());
+        board.setContent(form.getContent());
+        board.setWriter(form.getWriter());
+        board.setMember(member);
+
         boardRepository.save(board);
     }
 
