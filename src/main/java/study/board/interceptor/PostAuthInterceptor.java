@@ -44,6 +44,7 @@ public class PostAuthInterceptor implements HandlerInterceptor {
 
         if (!id1.equals(id)) {
             log.info("수정 권한 미인증 사용자 요청");
+
             // redirect
             response.sendRedirect("/board");
             return false;
