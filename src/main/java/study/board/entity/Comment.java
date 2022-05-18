@@ -8,14 +8,14 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class comment {
+public class Comment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
-    @Column(nullable = false, length = 500)
+    @Column(length = 500)
     private String content;
 
     @ManyToOne
@@ -26,4 +26,16 @@ public class comment {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    /**
+     * 연관관계 메서드
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+        board.getComments().add(this);
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.getComments().add(this);
+    }
 }

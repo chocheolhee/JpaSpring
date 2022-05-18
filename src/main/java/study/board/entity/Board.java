@@ -1,8 +1,11 @@
 package study.board.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,8 +28,14 @@ public class Board extends BaseEntity {
 
     private String writer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @OrderBy("id desc ")
+    @JsonIgnoreProperties({"board"})
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
+
 
 }
